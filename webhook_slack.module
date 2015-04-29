@@ -1,0 +1,39 @@
+<?php
+/**
+ * @file
+ * Code for the Webhook Example feature.
+ */
+
+include_once 'webhook_slack.features.inc';
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function webhook_slack_ctools_plugin_directory($module, $type) {
+  if ('webhook' == $module) {
+    return "plugins/{$type}";
+  }
+}
+
+/**
+ * Implements hook_webhook_processor().
+ */
+function webhook_slack_webhook_processor() {
+
+  $path = drupal_get_path('module', 'webhook_slack') . '/plugins/processor';
+  $plugins = array();
+
+  $plugins['slackhook'] = array(
+    'title' => t('Slack Integrator'),
+    'processor' => array(
+      'path' => $path,
+      'file' => 'Webhook_Slack_Plugins_Processor_SlackHook.class.inc',
+      'class' => 'Webhook_Slack_Plugins_Processor_SlackHook',
+    ),
+  );
+
+      dpm("Ham Module");
+
+  return $plugins;
+}
+

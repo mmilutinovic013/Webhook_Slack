@@ -1,0 +1,12 @@
+name = Webhook Slack
+description = Example Webhook for creating logging slack messages.
+core = 7.x
+package = Features
+dependencies[] = ctools
+dependencies[] = webhook
+dependencies[] = slack_entity
+features[ctools][] = webhook:webhook:1
+features[features_api][] = api:1
+features[webhook][] = slack
+
+files[] = plugins/processor/Webhook_Slack_Plugins_Processor_SlackHook.class.inc
